@@ -8,7 +8,8 @@ app.use(morgan('combined'));
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
-var articleone={
+var articles={
+ 'article-one': {
     title: "Article/Harsha",
     heading: "Article One",
     date:"10th sep,2016",content:`<p>This is my first article and good to see you all and feeling happy but for some days i am feeling some thing different and i am feeling depressed and feel like no bothers about me and i feel like i should have girl friend
@@ -18,7 +19,28 @@ var articleone={
         </p>
         <p>This is my first article and good to see you all and feeling happy but for some days i am feeling some thing different and i am feeling depressed and feel like no bothers about me and i feel like i should have girl friend
         </p>`
-}
+},
+ 'article-two':{
+          title: "Article/Harsha",
+    heading: "Article two",
+    date:"13th sep,2016",content:`<p>This is my first article and good to see you all and feeling happy but for some days i am feeling some thing different and i am feeling depressed and feel like no bothers about me and i feel like i should have girl friend
+        </p>
+        <p>This is my first article and good to see you all and feeling happy but for some days i am feeling some thing different and i am feeling depressed and feel like no bothers about me and i feel like i should have girl friend
+        </p><p>This is my first article and good to see you all and feeling happy but for some days i am feeling some thing different and i am feeling depressed and feel like no bothers about me and i feel like i should have girl friend
+        </p>
+        <p>This is my first article and good to see you all and feeling happy but for some days i am feeling some thing different and i am feeling depressed and feel like no bothers about me and i feel like i should have girl friend
+        </p>`
+    }
+  ,  'article-three': {  title: "Article/Harsha",
+    heading: "Article three",
+    date:"15th sep,2016",content:`<p>This is my first article and good to see you all and feeling happy but for some days i am feeling some thing different and i am feeling depressed and feel like no bothers about me and i feel like i should have girl friend
+        </p>
+        <p>This is my first article and good to see you all and feeling happy but for some days i am feeling some thing different and i am feeling depressed and feel like no bothers about me and i feel like i should have girl friend
+        </p><p>This is my first article and good to see you all and feeling happy but for some days i am feeling some thing different and i am feeling depressed and feel like no bothers about me and i feel like i should have girl friend
+        </p>
+        <p>This is my first article and good to see you all and feeling happy but for some days i am feeling some thing different and i am feeling depressed and feel like no bothers about me and i feel like i should have girl friend
+        </p>`}
+,};
 function createTemplate(data){
 var title = data.title;
 var heading = data.heading;
@@ -54,21 +76,13 @@ var htmltemplate =`
 `;
     return htmltemplate;
 }
-app.get('/article-one',function(req,res){
-    res.send(createTemplate(articleone));
+app.get(':articleName',function(req,res){
+    var articleName=req.params.articleName;
+    res.send(createTemplate(articles[articleName]));
 
     
 });
-app.get('/article-two',function(req,res){
-    res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
 
-    
-});
-app.get('/article-three',function(req,res){
-    res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
-
-    
-});
 
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
