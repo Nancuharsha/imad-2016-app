@@ -24,16 +24,6 @@ app.get('/article-one',function(req,res){
     
 });
 
-
-app.get('/article-two',function(req,res){
-    res.send("Hello!article two has been requested");
-    
-});
-
-app.get('/article-three',function(req,res){
-    res.send("Hello!article three has been requested");
-    
-});
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
