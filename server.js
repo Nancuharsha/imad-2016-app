@@ -8,8 +8,54 @@ app.use(morgan('combined'));
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
+var articleone={
+    title: "Article/Harsha",
+    heading: "Article One",
+    date:"10th sep,2016",content:`<p>This is my first article and good to see you all and feeling happy but for some days i am feeling some thing different and i am feeling depressed and feel like no bothers about me and i feel like i should have girl friend
+        </p>
+        <p>This is my first article and good to see you all and feeling happy but for some days i am feeling some thing different and i am feeling depressed and feel like no bothers about me and i feel like i should have girl friend
+        </p><p>This is my first article and good to see you all and feeling happy but for some days i am feeling some thing different and i am feeling depressed and feel like no bothers about me and i feel like i should have girl friend
+        </p>
+        <p>This is my first article and good to see you all and feeling happy but for some days i am feeling some thing different and i am feeling depressed and feel like no bothers about me and i feel like i should have girl friend
+        </p>`
+}
+function createTemplate(data){
+var title = data.title;
+var heading = data.heading;
+var date = data.date;
+var content = data.content;
+var htmltemplate =`
+<html>
+    <head>
+        <title>${title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link href="/ui/style.css" rel="stylesheet" />
+    </head>
+    
+    <body><div class = 'container'>
+<h1>Good to see you all</h1>
+<div>
+    <a href = '/'>Home</a>
+</div>
+<hr/>
+<h3>
+    ${heading}
+</h3>
+<div>
+    ${date}
+    </div>
+    <div>
+       ${content}
+    </div></div>
+</body>
+</html>
+
+
+`;
+    return htmltemplate;
+}
 app.get('/article-one',function(req,res){
-    res.sendFile(path.join(__dirname, 'ui', 'article.html'));
+    res.send(createTemplate(articleone));
 
     
 });
